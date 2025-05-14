@@ -53,29 +53,16 @@ const mockColleges = [
 export default function ResponsiveResultTable() {
   return (
     <section className="w-full flex flex-col items-center mt-2">
-      {/* Desktop Table */}
-      <div className="hidden md:block bg-[#FEF7CD] shadow rounded-xl border border-yellow-200 p-0 max-w-6xl w-full mb-3 overflow-auto">
-        <Table className="min-w-[860px]">
+      <div className="bg-[hsl(47,88%,96%)] shadow-md rounded-xl border border-yellow-200 p-0 max-w-6xl w-full mb-8 overflow-x-auto">
+        <Table className="min-w-[720px]">
           <TableHeader>
-            <TableRow>
-              <TableHead className="w-[310px] border-r border-yellow-300 text-gray-700 bg-[#FEF7CD] font-semibold text-[15px]">
-                College
-              </TableHead>
-              <TableHead className="w-[90px] border-r border-yellow-300 text-gray-700 bg-[#FEF7CD] font-semibold text-[15px]">
-                Course
-              </TableHead>
-              <TableHead className="w-[190px] border-r border-yellow-300 text-gray-700 bg-[#FEF7CD] font-semibold text-[15px]">
-                Quota
-              </TableHead>
-              <TableHead className="w-[80px] border-r border-yellow-300 text-gray-700 bg-[#FEF7CD] font-semibold text-[15px]">
-                Category
-              </TableHead>
-              <TableHead className="w-[70px] text-purple-900 text-center bg-[#FEF7CD] font-semibold">
-                2024
-              </TableHead>
-              <TableHead className="w-[70px] text-purple-900 text-center bg-[#FEF7CD] font-semibold">
-                2023
-              </TableHead>
+            <TableRow className="bg-[hsl(47,93%,89%)]">
+              <TableHead className="w-[260px] text-gray-700">College</TableHead>
+              <TableHead className="w-[80px] text-gray-700">Course</TableHead>
+              <TableHead className="w-[170px] text-gray-700">Quota</TableHead>
+              <TableHead className="w-[80px] text-gray-700">Category</TableHead>
+              <TableHead className="w-[65px] text-purple-800 text-center">2024</TableHead>
+              <TableHead className="w-[65px] text-purple-800 text-center">2023</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -83,52 +70,49 @@ export default function ResponsiveResultTable() {
               college.quotas.map((q, idx) => (
                 <TableRow key={`${college.code}-${q.quota}`}>
                   {idx === 0 ? (
-                    <TableCell rowSpan={college.quotas.length} className="align-top min-w-[260px] border-r border-yellow-200 bg-white">
+                    <TableCell rowSpan={college.quotas.length} className="align-top min-w-[260px]">
                       <div>
-                        <div className="font-semibold text-[15px] text-[#1A1F2C] leading-snug">{college.name}</div>
+                        <div className="font-semibold text-[15px] text-purple-900 leading-snug">{college.name}</div>
                         <div className="text-xs text-gray-500 mt-1">College Code: {college.code}</div>
                       </div>
                     </TableCell>
                   ) : null}
-                  <TableCell className="text-[15px] border-r border-yellow-100 bg-white">{college.course}</TableCell>
-                  <TableCell className="border-r border-yellow-100 bg-white">
-                    <span className="block text-xs font-medium text-yellow-900 px-2 py-1 rounded bg-yellow-50 border border-yellow-200 w-fit">{q.quota}</span>
+                  <TableCell className="text-[15px]">{college.course}</TableCell>
+                  <TableCell>
+                    <span className="block text-xs font-medium text-yellow-900 px-2 py-1 rounded bg-yellow-50 border border-yellow-100 w-fit">{q.quota}</span>
                   </TableCell>
-                  <TableCell className="bg-white">
+                  <TableCell>
                     <span className="inline-block text-xs font-medium bg-blue-50 text-blue-700 px-2 py-1 rounded">{q.category}</span>
                   </TableCell>
-                  <TableCell className="text-center font-bold text-purple-900 bg-white">{q.rank2024}</TableCell>
-                  <TableCell className="text-center text-purple-700 bg-white">{q.rank2023}</TableCell>
+                  <TableCell className="text-center font-bold text-purple-800">{q.rank2024}</TableCell>
+                  <TableCell className="text-center text-purple-600">{q.rank2023}</TableCell>
                 </TableRow>
               ))
             )}
           </TableBody>
         </Table>
-      </div>
-      {/* Mobile Table alternative */}
-      <div className="md:hidden grid gap-4 w-full px-0">
-        {mockColleges.map((college) =>
-          college.quotas.map((q, idx) => (
-            <div
-              key={`${college.code}-${q.quota}`}
-              className="bg-white border border-yellow-200 rounded-lg shadow-sm p-3 flex flex-col space-y-0.5"
-            >
-              <div className="font-semibold text-purple-900 text-sm mb-1 leading-tight">{college.name}</div>
-              <div className="text-xs text-gray-500 mb-1">Code: {college.code}</div>
-              <div className="flex flex-wrap gap-1 mb-1">
-                <span className="bg-blue-50 text-blue-700 px-2 py-0.5 rounded text-xs">{college.course}</span>
-                <span className="bg-yellow-50 text-yellow-900 border border-yellow-100 px-2 py-0.5 rounded text-xs">{q.quota}</span>
-                <span className="bg-blue-50 text-blue-700 px-2 py-0.5 rounded text-xs">{q.category}</span>
+        {/* Mobile Table alternative */}
+        <div className="md:hidden flex flex-col gap-4 p-3">
+          {mockColleges.map((college) =>
+            college.quotas.map((q, idx) => (
+              <div key={`${college.code}-${q.quota}`} className="bg-white rounded-md border border-yellow-100 shadow-sm p-3 flex flex-col text-sm">
+                <div className="font-semibold text-purple-900 mb-1">{college.name}</div>
+                <div className="text-xs text-gray-500 mb-2">Code: {college.code}</div>
+                <div className="flex flex-wrap gap-1 mb-2">
+                  <span className="bg-blue-50 text-blue-700 px-2 py-0.5 rounded">{college.course}</span>
+                  <span className="bg-yellow-50 text-yellow-900 border border-yellow-100 px-2 py-0.5 rounded">{q.quota}</span>
+                  <span className="bg-blue-50 text-blue-700 px-2 py-0.5 rounded">{q.category}</span>
+                </div>
+                <div>
+                  <span className="inline-block mr-2 font-bold text-xs text-purple-800">2024:</span>
+                  <span className="inline-block mr-2">{q.rank2024}</span>
+                  <span className="inline-block font-bold text-xs text-purple-600">2023:</span>
+                  <span className="inline-block">{q.rank2023}</span>
+                </div>
               </div>
-              <div className="flex gap-3 mt-2">
-                <span className="inline-block font-bold text-xs text-purple-800">2024:</span>
-                <span className="inline-block text-xs text-purple-900 mr-3">{q.rank2024}</span>
-                <span className="inline-block font-bold text-xs text-purple-700">2023:</span>
-                <span className="inline-block text-xs text-purple-700">{q.rank2023}</span>
-              </div>
-            </div>
-          ))
-        )}
+            ))
+          )}
+        </div>
       </div>
     </section>
   );
