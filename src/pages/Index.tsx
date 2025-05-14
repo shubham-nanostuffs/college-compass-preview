@@ -1,11 +1,11 @@
-
+import MedicalCollegeSummaryCard from "@/components/MedicalCollegeSummaryCard";
 import SelectionSummary from "@/components/SelectionSummary";
 
 const Index = () => {
   return (
     <div className="min-h-screen flex flex-col items-center bg-gray-100 py-8">
       {/* Selection Summary */}
-      <SelectionSummary />
+      <MedicalCollegeSummaryCard />
 
       {/* Result Table Placeholder */}
       <section className="w-full flex flex-col items-center mt-4">
